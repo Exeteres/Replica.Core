@@ -1,0 +1,9 @@
+{
+    "ConversionError": "Conversion error",
+    "Mismatch": "Parameter count mismatch",
+    "AccessDenied": "Access denied",
+    "MustBeNoLess": "Must be no less than {0}",
+    "MustBeNoMore": "Must be no more than {0}",
+    "MustContainAtLeast": "Must contain at least {0} {0:plural:element|elements}",
+    "MustContainNoMore": "Must contain no more than {0} {0:plural:element|elements}"
+}
