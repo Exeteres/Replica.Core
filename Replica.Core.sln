@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replica.Core.LevelDB", "Rep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replica.Core.Views", "Replica.Core.Views\Replica.Core.Views.csproj", "{9C661624-0F20-4086-B2F3-8A94C56BBF67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replica.Core.Flows", "Replica.Core.Flows\Replica.Core.Flows.csproj", "{0C903ABC-DAF6-480C-B806-26FE2FF88203}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,18 @@ Global
 		{9C661624-0F20-4086-B2F3-8A94C56BBF67}.Release|x64.Build.0 = Release|Any CPU
 		{9C661624-0F20-4086-B2F3-8A94C56BBF67}.Release|x86.ActiveCfg = Release|Any CPU
 		{9C661624-0F20-4086-B2F3-8A94C56BBF67}.Release|x86.Build.0 = Release|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Debug|x64.Build.0 = Debug|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Debug|x86.Build.0 = Debug|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|x64.ActiveCfg = Release|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|x64.Build.0 = Release|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|x86.ActiveCfg = Release|Any CPU
+		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CA93CDBF-14D5-4465-A9DA-03EA04C585D1} = {4A74A351-8548-4A52-92FD-F3CE5A1FDB04}

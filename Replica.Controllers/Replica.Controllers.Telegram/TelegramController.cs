@@ -46,6 +46,12 @@ namespace Replica.Controllers.Telegram
                 new InlineKeyboardMarkup(buttons);
         }
 
+        private ReplyKeyboardMarkup RenderKeyboard(OutMessage message)
+        {
+            return new ReplyKeyboardMarkup(message.Keyboard.Markup
+                .Select(x => x.Select(y => new KeyboardButton(y))), true);
+        }
+
         public override async Task<string> ResolveSource(Attachment attachment)
         {
             return $"https://api.telegram.org/file/bot{Options.Token}/{(await _bot.GetFileAsync(attachment.FileId)).FilePath}";
@@ -54,6 +60,18 @@ namespace Replica.Controllers.Telegram
         public override async Task<IEnumerable<long>> SendMessage(long chatId, OutMessage message)
         {
             var ids = new List<long>();
+            if (message.Keyboard.Remove)
+            {
+                var result = await _bot.SendTextMessageAsync(chatId, message.Text, replyMarkup: new ReplyKeyboardRemove(), disableWebPagePreview: true);
+                ids.Add(result.MessageId);
+                return ids;
+            }
+            if (message.Keyboard.Markup != null)
+            {
+                var result = await _bot.SendTextMessageAsync(chatId, message.Text, replyMarkup: RenderKeyboard(message), disableWebPagePreview: true);
+                ids.Add(result.MessageId);
+                return ids;
+            }
             if (message.Buttons != null)
             {
                 var result = await _bot.SendTextMessageAsync(chatId, message.Text, replyMarkup: RenderButtons(message), disableWebPagePreview: true);

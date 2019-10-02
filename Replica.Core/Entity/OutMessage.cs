@@ -8,6 +8,7 @@ namespace Replica.Core.Entity
         public string Text { get; set; }
         public MessageFlags Flags { get; set; }
         public Button[] Buttons { get; set; }
+        public Keyboard Keyboard { get; set; }
         public Attachment[] Attachments { get; set; }
 
         public static OutMessage FromCode(string code)
