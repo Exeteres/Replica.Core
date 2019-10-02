@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using SmartFormat;
 
 namespace Replica.Core.Localization
@@ -20,5 +21,8 @@ namespace Replica.Core.Localization
 
         public string Localize(string key, params object[] args)
             => Smart.Format(this[key], args);
+
+        public string Delocalize(string value)
+            => _dict.FirstOrDefault(x => x.Value == value).Key;
     }
 }
