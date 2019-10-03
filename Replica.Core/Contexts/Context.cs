@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Globalization;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -15,11 +16,14 @@ namespace Replica.Core.Contexts
 
         public IController Controller { get; private set; }
 
+        public CultureInfo CultureInfo { get; private set; }
+
         public Context(BotCore core, IController controller, InMessage message)
         {
             Core = core;
             Controller = controller;
             Message = message;
+            CultureInfo = new CultureInfo(Message.Sender.Language ?? Core.DefaultLanguage);
         }
 
         public Task<IEnumerable<long>> SendMessage(OutMessage message)

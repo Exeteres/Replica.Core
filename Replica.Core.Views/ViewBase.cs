@@ -26,7 +26,8 @@ namespace Replica.Core.Views
         }
 
         protected Context Context => _context;
-        protected object[] Arguments { get; private set; }
+
+        protected virtual void Init(object[] args) { }
 
         public string Name => _info.Name;
 
@@ -40,7 +41,7 @@ namespace Replica.Core.Views
         {
             _context = context;
             _state = _info.Default;
-            Arguments = args;
+            Init(args);
             UpdateView();
         }
 

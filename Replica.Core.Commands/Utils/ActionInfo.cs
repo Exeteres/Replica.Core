@@ -136,6 +136,14 @@ namespace Replica.Core.Commands.Utils
                     return null;
                 }
 
+                if (type == typeof(DateTime))
+                {
+                    if (!DateTime.TryParse(arg, out var res))
+                        return "Not a DateTime";
+                    result = res;
+                    return null;
+                }
+
                 var converter = context.Core
                     .ResolveModule<CommandsModule>()
                     .ResolveConverter(type);

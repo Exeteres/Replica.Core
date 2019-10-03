@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,8 @@ namespace Replica.Core
 
         internal SimpleHttpServer WebhookServer { get; private set; }
         internal string Endpoint => _settings.Core.Endpoint;
+
+        internal string DefaultLanguage => _settings.Core.Language;
 
         public BotCore(ISettingsLoader loader)
         {

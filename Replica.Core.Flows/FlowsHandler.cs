@@ -39,6 +39,13 @@ namespace Replica.Core.Flows
                 return;
             }
 
+            if (Context.Message.Text == localizer["Done"])
+            {
+                flow.Done();
+                Flows.Remove(Context.Message.Chat.Id);
+                return;
+            }
+
             var btn = flow.State.FirstOrDefault(x => x.Label == Context.Message.Text);
             if (btn.Method == null)
             {

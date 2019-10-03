@@ -13,5 +13,6 @@ namespace Replica.Core.Flows
         FlowInternalButton[] State { get; }
         void Rollback();
         void Leave(string message);
+        void Done();
     }
 }

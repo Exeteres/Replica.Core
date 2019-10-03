@@ -261,7 +261,12 @@ namespace Replica.Controllers.Telegram
                 return _bot.EditMessageTextAsync(chatId, (int)id, message.Text, replyMarkup: RenderButtons(message));
             }
 
-            return _bot.EditMessageTextAsync(chatId, (int)id, message.Text, ParseMode.Html);
+            var iscode = message.Flags.HasFlag(MessageFlags.Code);
+            return _bot.EditMessageTextAsync(chatId, (int)id, iscode
+                ? $"<code>{message.Text.EscapeHTML()}</code>"
+                : message.Text, iscode || message.Flags.HasFlag(MessageFlags.AllowHTMl)
+                    ? ParseMode.Html
+                    : ParseMode.Default, true);
 
             //var attachment = message.Attachments[0];
             //return _bot.EditMessageCaptionAsync(chatId, (int)id, message.Text, RenderButtons(message));
