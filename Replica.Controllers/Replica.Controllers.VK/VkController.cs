@@ -26,6 +26,7 @@ using VkNet.Exception;
 using Document = Replica.Core.Entity.Attachments.Document;
 using Replica.Core.Utils;
 using VkNet.Utils;
+using Replica.Controllers.VK.Utils;
 
 namespace Replica.Controllers.VK
 {
@@ -40,7 +41,7 @@ namespace Replica.Controllers.VK
 
         public override void Init()
         {
-            _api = new VkApi();
+            _api = new VkApi(new SerilogLogger());
             _api.Authorize(new ApiAuthParams { AccessToken = Options.Token });
         }
 
@@ -170,26 +171,26 @@ namespace Replica.Controllers.VK
         {
             /* fix */
             if (chatId < 2000000000)// fix
-                                    /* fix */
+            /* fix */
             {// fix
-             /* fix */
+                /* fix */
                 var user = await GetUserInfo(chatId);// fix
-                                                     /* fix */
+                /* fix */
                 return new ChatInfo(chatId, user.Username, user.Id);// fix
             }// fix/* fix *//* fix */
-             /* fix */
+            /* fix */
             try// fix/* fix */
-               /* fix *//* fix *//* fix */
+            /* fix *//* fix *//* fix */
             {// fix/* fix */
-             /* fix *//* fix *//* fix */
-                               /* fix *//* fix */
+                /* fix *//* fix *//* fix */
+                /* fix *//* fix */
                 var chats = await _api.Messages.GetConversationsByIdAsync(new long[] { chatId }, new string[0]); // TODO fix
                 if (chats.Items.Count() == 0) // fix
-                                              /* fix */                                  /* fix */            /* fix */    /* fix */
+                    /* fix */                                  /* fix */            /* fix */    /* fix */
                     return new ChatInfo(chatId, "Unable to get name", 0); //fix
-                                                                          /* fix */               /* /* fi                 /* fix */                                        /* fix */
+                /* fix */               /* /* fi                 /* fix */                                        /* fix */
                 var chat = chats.Items.First().ChatSettings; //  fix
-                                                             /* fix */
+                /* fix */
                 return new ChatInfo(chatId, chat.Title, chat.OwnerId); // fix/* fix */
             } // fix
             catch { return new ChatInfo(chatId, "Error while getting ChatInfo", 0); } // fix

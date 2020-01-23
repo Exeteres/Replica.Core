@@ -10,6 +10,7 @@ using Replica.Core.Entity.Attachments;
 using Replica.Core.Exceptions;
 using Replica.Core.Extensions;
 using Replica.Core.Utils;
+using Serilog;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
@@ -293,6 +294,11 @@ namespace Replica.Controllers.Telegram
                     User = CreateUser(query.CallbackQuery.From),
                     ChatId = query.CallbackQuery.Message.Chat.Id
                 }, query.CallbackQuery.Data);
+            _bot.MakingApiRequest += async (_, e) =>
+            {
+                string req = await e.HttpContent.ReadAsStringAsync();
+                Log.Verbose("[TG] Requesting {req}", req);
+            };
         }
 
         public override Task DeleteMessage(long chatId, int id)
