@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replica.Core.Views", "Repli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replica.Core.Flows", "Replica.Core.Flows\Replica.Core.Flows.csproj", "{0C903ABC-DAF6-480C-B806-26FE2FF88203}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replica.Controllers.Discord", "Replica.Controllers\Replica.Controllers.Discord\Replica.Controllers.Discord.csproj", "{321B6011-F0CE-41C4-8412-E9C8C678FEA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,9 +118,22 @@ Global
 		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|x64.Build.0 = Release|Any CPU
 		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|x86.ActiveCfg = Release|Any CPU
 		{0C903ABC-DAF6-480C-B806-26FE2FF88203}.Release|x86.Build.0 = Release|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Debug|x64.Build.0 = Debug|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Debug|x86.Build.0 = Debug|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Release|x64.ActiveCfg = Release|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Release|x64.Build.0 = Release|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Release|x86.ActiveCfg = Release|Any CPU
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CA93CDBF-14D5-4465-A9DA-03EA04C585D1} = {4A74A351-8548-4A52-92FD-F3CE5A1FDB04}
 		{66D65186-7D10-4D72-8FC2-B9201483048C} = {4A74A351-8548-4A52-92FD-F3CE5A1FDB04}
+		{321B6011-F0CE-41C4-8412-E9C8C678FEA6} = {4A74A351-8548-4A52-92FD-F3CE5A1FDB04}
 	EndGlobalSection
 EndGlobal

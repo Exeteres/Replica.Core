@@ -1,7 +1,8 @@
 namespace Replica.Controllers.Telegram
 {
-    public struct TelegramOptions
+    public class TelegramOptions
     {
         public string Token { get; set; }
+        public string Proxy { get; set; }
     }
 }

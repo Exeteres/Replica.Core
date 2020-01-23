@@ -74,9 +74,9 @@ namespace Replica.Core
                 throw new MissedInfoException("Missed controller attribute");
             if (_controllers.Any(c => c.Name == controller.Name))
                 throw new AlreadyRegisteredException("Controller with same name already registered");
+            var options = _settings.Controllers?[controller.Name];
+            if (options == null) return;
             controller.SetCore(this);
-            var options = _settings.Controllers?[controller.Name]
-                ?? throw new InvalidConfigurationException($"Settings for {controller.Name} controller not provided");
             controller.SetOptions(options);
             controller.Init();
             if (WebhookServer != null)

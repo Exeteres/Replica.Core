@@ -9,5 +9,6 @@ namespace Replica.Core.Entity
         public string Language { get; set; }
         public bool IsBot { get; set; }
         public string Title { get; set; }
+        public string AvatarUrl { get; set; }
     }
 }

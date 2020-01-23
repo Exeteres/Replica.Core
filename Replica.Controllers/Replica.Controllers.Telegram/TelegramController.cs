@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Replica.Core.Controllers;
 using Replica.Core.Entity;
 using Replica.Core.Entity.Attachments;
-using Replica.Core.Exceptions;
 using Replica.Core.Extensions;
 using Replica.Core.Utils;
 using Serilog;
@@ -16,8 +15,6 @@ using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
-
-using Document = Replica.Core.Entity.Attachments.Document;
 using Sticker = Replica.Core.Entity.Attachments.Sticker;
 using Voice = Replica.Core.Entity.Attachments.Voice;
 
@@ -56,6 +53,11 @@ namespace Replica.Controllers.Telegram
         public override async Task<string> ResolveSource(Attachment attachment)
         {
             return $"https://api.telegram.org/file/bot{Options.Token}/{(await _bot.GetFileAsync(attachment.FileId)).FilePath}";
+        }
+
+        private async Task<string> ResolveSource(string attachmentId)
+        {
+            return $"https://api.telegram.org/file/bot{Options.Token}/{(await _bot.GetFileAsync(attachmentId)).FilePath}";
         }
 
         public override async Task<IEnumerable<long>> SendMessage(long chatId, OutMessage message)
@@ -275,7 +277,7 @@ namespace Replica.Controllers.Telegram
 
         public override void Init()
         {
-            _bot = new TelegramBotClient(Options.Token);
+            _bot = new TelegramBotClient(Options.Token, Options.Proxy != null ? new WebProxy(Options.Proxy) : null);
             _bot.OnMessage += (e, args) =>
             {
                 if (args.Message.Text == "/test" || args.Message.Caption == "/test")
@@ -315,6 +317,7 @@ namespace Replica.Controllers.Telegram
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                AvatarUrl = await ResolveSource(user.Photo.SmallFileId),
                 Title = user.Title
             };
         }

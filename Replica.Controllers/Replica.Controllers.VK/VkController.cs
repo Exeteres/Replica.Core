@@ -140,7 +140,7 @@ namespace Replica.Controllers.VK
         {
             if (id > 0)
             {
-                var users = await _api.Users.GetAsync(new long[] { id }, ProfileFields.ScreenName | ProfileFields.Language);
+                var users = await _api.Users.GetAsync(new long[] { id }, ProfileFields.ScreenName | ProfileFields.Language | ProfileFields.Photo100);
                 if (users.Count == 0)
                     throw new NotFoundException("User not found");
                 var user = users[0];
@@ -151,6 +151,7 @@ namespace Replica.Controllers.VK
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Language = user.Language.ToString(),
+                    AvatarUrl = user.Photo100.ToString(),
                     IsBot = false
                 };
             }

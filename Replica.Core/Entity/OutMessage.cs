@@ -1,4 +1,3 @@
-using System;
 using Replica.Core.Entity.Attachments;
 
 namespace Replica.Core.Entity
@@ -10,6 +9,12 @@ namespace Replica.Core.Entity
         public Button[] Buttons { get; set; }
         public Keyboard Keyboard { get; set; }
         public Attachment[] Attachments { get; set; }
+
+        // Discord compatibility
+        public string AuthorName { get; set; }
+        public string AuthorUrl { get; set; }
+        public string AuthorIcon { get; set; }
+        public string Footer { get; set; }
 
         public static OutMessage FromCode(string code)
             => new OutMessage { Text = code, Flags = MessageFlags.Code };
