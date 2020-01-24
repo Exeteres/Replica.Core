@@ -70,6 +70,12 @@ namespace Replica.Controllers.Discord
                         attachment.Width.Value,
                         attachment.Height.Value,
                         attachment.Size)});
+                case ".gif":
+                    return _factory.CreateDocument(
+                        attachment.Id.ToString(),
+                        attachment.Url,
+                        attachment.Filename,
+                        attachment.Size);
                 default: return null;
             }
         }
@@ -119,25 +125,25 @@ namespace Replica.Controllers.Discord
             IUserMessage result;
             if (message.AuthorName != null)
             {
-                var photos = message.Attachments.OfType<Photo>();
+                var attachments = message.Attachments.Where(x => x is Photo || x is Sticker);
                 var embed = new EmbedBuilder()
                     .WithAuthor(message.AuthorName, message.AuthorIcon, message.AuthorUrl)
                     .WithDescription(message.Text)
                     .WithFooter(message.Footer);
                 IController controller = null;
-                if (photos.Count() > 0)
+                if (attachments.Count() > 0)
                 {
-                    controller = ResolveController(photos.First().Controller);
-                    var source = await controller.ResolveSource(photos.First());
+                    controller = ResolveController(attachments.First().Controller);
+                    var source = await controller.ResolveSource(attachments.First());
                     embed.WithImageUrl(source);
-                    photos = photos.Skip(1);
+                    attachments = attachments.Skip(1);
                 }
                 result = await channel.SendMessageAsync(embed: embed.Build());
                 ids.Add((long)result.Id);
 
-                foreach (var photo in photos)
+                foreach (var attachment in attachments)
                 {
-                    var source = await controller.ResolveSource(photos.First());
+                    var source = await controller.ResolveSource(attachments.First());
                     embed = new EmbedBuilder().WithImageUrl(source);
                     result = await channel.SendMessageAsync(embed: embed.Build());
                     ids.Add((long)result.Id);
@@ -171,7 +177,9 @@ namespace Replica.Controllers.Discord
 
         protected override Task<UserInfo> FetchUserInfo(long userId)
         {
-            throw new NotImplementedException();
+            var user = _client.GetUser((ulong)userId);
+            if (user == null) return Task.FromResult(new UserInfo());
+            return Task.FromResult(CreateUser(user));
         }
 
         protected override void SetupWebhook(SimpleHttpServer server, string endpoint, string path, string secret)

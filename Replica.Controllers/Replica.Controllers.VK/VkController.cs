@@ -22,7 +22,6 @@ using Attachment = Replica.Core.Entity.Attachments.Attachment;
 using System.Net.Http;
 using Sticker = Replica.Core.Entity.Attachments.Sticker;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
 using Document = Replica.Core.Entity.Attachments.Document;
 using Replica.Core.Utils;
 using VkNet.Utils;
