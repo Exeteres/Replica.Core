@@ -116,6 +116,10 @@ namespace Replica.Core
             if (WebhookServer != null)
             {
                 WebhookServer.Listen();
+
+                // Fix discord longpoll
+                var dcController = _controllers.FirstOrDefault(x => x.Name == "dc");
+                dcController?.Start();
                 return;
             }
             foreach (var controller in _controllers)
@@ -141,7 +145,7 @@ namespace Replica.Core
 
                 // Fix discord longpoll
                 var dcController = _controllers.FirstOrDefault(x => x.Name == "dc");
-                dcController?.Start();
+                dcController?.Stop();
                 return;
             }
             foreach (var controller in _controllers)
